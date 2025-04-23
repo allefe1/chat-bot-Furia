@@ -1,0 +1,392 @@
+/* style.css */
+
+/* Global reset and box model */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Animated gradient background */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(270deg, #0a0a0a, #1a1a1a, #0a0a0a);
+    background-size: 600% 600%;
+    animation: gradientBG 20s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Background particles container */
+#bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Chat wrapper above background */
+.chat-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 500px;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.95);
+    animation: fadeInScale 0.6s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+    to {
+        transform: scale(1);
+    }
+}
+
+.chat-header {
+    padding: 20px;
+    background: rgba(15, 15, 15, 0.9);
+    border-bottom: 1px solid #222;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Título do chat com contorno branco e brilho */
+.chat-header h1 {
+    color: black;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    -webkit-text-stroke: 1px white;
+}
+
+.logo {
+    width: 50px;
+    filter: drop-shadow(0 0 10px white);
+}
+
+.header-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.control-btn:hover {
+    transform: scale(1.2) rotate(20deg);
+}
+
+.chat-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto; /* Permite rolagem vertical */
+    max-height: 400px; /* Ajuste conforme necessário */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    scrollbar-width: thin; /* Barra de rolagem mais fina para Firefox */
+    scrollbar-color: #00ffaa transparent; /* Cor da barra de rolagem e do fundo */
+}
+
+/* Para browsers que utilizam WebKit (Chrome, Safari, Edge) */
+.chat-body::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+}
+
+.chat-body::-webkit-scrollbar-track {
+    background: transparent; /* Fundo da área da barra */
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+    background-color: #00ffaa; /* Cor da barra de rolagem */
+    border-radius: 10px; /* Arredondar as bordas da barra */
+    border: 2px solid transparent; /* Contorno da barra */
+    background-clip: content-box;
+}
+
+.message {
+    max-width: 75%;
+    padding: 12px 18px;
+    border-radius: 12px;
+    line-height: 1.5;
+    position: relative;
+    opacity: 0;
+    animation: bubbleIn 0.4s forwards;
+}
+
+@keyframes bubbleIn {
+    from { transform: translateY(20px) scale(0.95); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.message.bot {
+    align-self: flex-start;
+    background: rgba(34, 34, 34, 0.9);
+    color: #00ffaa;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: #00ffaa;
+    color: #111;
+}
+
+.quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.reply-btn {
+    background: #00ffaa;
+    color: #111;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.reply-btn:hover {
+    background: #00ddaa;
+    transform: translateY(-2px);
+}
+
+.chat-footer {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(15, 15, 15, 0.9);
+    border-top: 1px solid #222;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    background: rgba(0, 0, 0, 0.6);
+    color: #f1f1f1;
+}
+
+#send-btn {
+    margin-left: 10px;
+    padding: 10px 18px;
+    background: #00ffaa;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+#send-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .chat-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
+/* Seção "Ver mais" - Atualizada */
+.more-container {
+    background: rgba(20, 20, 20, 0.95);
+    border-top: 1px solid #222;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.more-toggle {
+    width: 100%;
+    padding: 15px;
+    background: rgba(15, 15, 15, 0.9);
+    color: #00ffaa;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    z-index: 2;
+    position: relative;
+}
+
+.more-toggle:hover {
+    background: rgba(30, 30, 30, 0.9);
+    color: white;
+}
+
+.arrow-down {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.more-toggle.expanded .arrow-down {
+    transform: rotate(180deg);
+}
+
+.more-info {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    background: rgba(20, 20, 20, 0.95);
+    transition: max-height 0.5s ease-out, padding 0.3s ease;
+}
+
+.more-info.expanded {
+    max-height: 1000px;
+    padding: 20px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Estilos do conteúdo */
+.more-info h2 {
+    color: #00ffaa;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+    -webkit-text-stroke: 0.5px white;
+}
+
+.more-info h3 {
+    color: #00ffaa;
+    margin: 15px 0 10px;
+    font-size: 1.2rem;
+}
+
+.more-info p {
+    color: #f1f1f1;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.esports ul {
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+.esports li {
+    color: white;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.esports li:before {
+    content: "•";
+    color: #00ffaa;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
+.social-media {
+    margin: 20px 0;
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.social-links a {
+    color: #00ffaa;
+    background: rgba(0, 255, 170, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 255, 170, 0.3);
+}
+
+.social-links a:hover {
+    background: rgba(0, 255, 170, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 10px rgba(0, 255, 170, 0.2);
+}
+
+.team-images {
+    margin-top: 20px;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.image-grid img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(0, 255, 170, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .more-info {
+        padding: 0 15px;
+    }
+    
+    .more-info.expanded {
+        padding: 15px;
+    }
+    
+    .social-links {
+        flex-direction: column;
+    }
+    
+    .image-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

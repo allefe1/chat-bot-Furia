@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat FURIA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Canvas de partículas de fundo -->
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="chat-container">
+    <!-- Cabeçalho do chat -->
+    <header class="chat-header">
+      <img src="imagens/logo.png" alt="Logo FURIA" class="logo" />
+      <h1>Chat FURIA</h1>
+      <div class="header-controls">
+        <button class="control-btn" id="sound-btn" title="Ativar/desativar som" aria-label="Ativar ou desativar som">🔊</button>
+        <button class="control-btn" id="theme-btn" title="Alternar tema" aria-label="Alternar tema claro ou escuro">🌙</button>
+      </div>
+    </header>
+
+    <!-- Corpo do chat -->
+    <main class="chat-body" id="chat-body">
+      <div class="message bot">Olá! Sou o FURIAbot. Em que posso te ajudar hoje? 😎</div>
+    </main>
+
+    <!-- Rodapé com entrada de mensagem -->
+    <footer class="chat-footer">
+      <input type="text" id="user-input" placeholder="Digite sua mensagem..." aria-label="Digite sua mensagem" />
+      <button id="send-btn" aria-label="Enviar mensagem">Enviar</button>
+    </footer>
+
+    <!-- Seção "Ver mais" reorganizada -->
+    <div class="more-container">
+      <button class="more-toggle" id="more-info-btn" aria-expanded="false" aria-controls="more-info">
+        Ver mais
+        <span class="arrow-down" aria-hidden="true">⌄</span>
+      </button>
+
+      <section class="more-info" id="more-info" aria-hidden="true">
+        <h2>Sobre a FURIA</h2>
+        <p>A FURIA é uma das organizações de e-sports mais prestigiadas do Brasil.</p>
+
+        <div class="esports">
+          <h3>Principais Jogos</h3>
+          <ul>
+            <li>CS:GO</li>
+            <li>VALORANT</li>
+            <li>League of Legends</li>
+          </ul>
+        </div>
+
+        <div class="social-media">
+          <h3>Redes Sociais</h3>
+          <div class="social-links">
+            <a href="https://twitter.com/furia" target="_blank" rel="noopener">Twitter</a>
+            <a href="https://twitch.tv/furia" target="_blank" rel="noopener">Twitch</a>
+            <a href="https://instagram.com/furiagg" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+
+        <div class="team-images">
+          <h3>Fotos da Equipe</h3>
+          <div class="image-grid">
+            <img src="imagens/image1.png" alt="Jogador da FURIA competindo" loading="lazy" />
+            <img src="imagens/image2.png" alt="Equipe FURIA comemorando" loading="lazy" />
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
