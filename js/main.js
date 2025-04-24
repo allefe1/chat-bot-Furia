@@ -12,6 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const moreInfoSection = document.getElementById('more-info');
     const soundBtn = document.getElementById('sound-btn');
 
+    // ▼▼▼ DECLARE A FUNÇÃO PRIMEIRO ▼▼▼
+    function loadTheme() {
+        const savedTheme = localStorage.getItem('furiaChat_theme') || 'dark';
+        theme = savedTheme;
+        if (theme === 'light') {
+            document.body.classList.add('light');
+            document.getElementById('theme-btn').innerHTML = '☀️';
+        }
+    }
+
+    loadTheme(); // Chame esta função no início do seu código
+
     // Inicializa o chat
     initChat({ sendBtn, userInput, chatBody, soundBtn });
 
@@ -51,11 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateParticles();
 
-    // Botões de tema
-    document.getElementById('theme-btn').addEventListener('click', () => {
-        document.body.classList.toggle('light');
-        theme = document.body.classList.contains('light') ? 'light' : 'dark';
-    });
+    // Botões de tema - Versão melhorada
+document.getElementById('theme-btn').addEventListener('click', () => {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    document.body.classList.toggle('light', theme === 'light');
+    
+    // Atualiza o ícone do botão
+    const themeBtn = document.getElementById('theme-btn');
+    themeBtn.innerHTML = theme === 'dark' ? '🌙' : '☀️';
+    
+    // Salva preferência no localStorage
+    localStorage.setItem('furiaChat_theme', theme);
+});
 
     // Botão ver mais - com nova lógica para a seção separada
     moreInfoBtn.addEventListener('click', () => {

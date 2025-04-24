@@ -7,6 +7,55 @@
     box-sizing: border-box;
 }
 
+/* ===== TEMA CLARO ===== */
+body.light {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  body.light .chat-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  body.light .chat-header {
+    background-color: #f8f8f8;
+    color: #222;
+    border-bottom: 1px solid #eee;
+  }
+  
+  body.light .chat-footer {
+    background-color: #f8f8f8;
+    border-top: 1px solid #eee;
+  }
+  
+  body.light input#user-input {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  
+  body.light .message.user {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+  }
+  
+  body.light .message.bot {
+    background-color: #f1f1f1;
+    color: #333;
+  }
+  
+  body.light .top-bar {
+    background: linear-gradient(90deg, #f8f8f8 0%, #e0e0e0 100%);
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Ajuste para partículas no tema claro */
+  body.light #bg-canvas {
+    filter: invert(20%);
+  }
+
 /* Barra superior */
 .top-bar {
     position: fixed;
