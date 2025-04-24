@@ -11,10 +11,17 @@
   <!-- Canvas de partículas de fundo -->
   <canvas id="bg-canvas"></canvas>
 
+  <!-- NOVA BARRA SUPERIOR (com logo adicional) -->
+  <header class="top-bar">
+    <div class="top-bar-content">
+      <img src="imagens/logosuperior.png" alt="FURIA Esports" class="top-logo" />
+    </div>
+  </header>
+
   <div class="page-container">
-    <!-- Container do chat -->
+    <!-- Container do chat (MANTIDO ORIGINAL) -->
     <div class="chat-container">
-      <!-- Cabeçalho do chat -->
+      <!-- Cabeçalho do chat (com logo original preservado) -->
       <header class="chat-header">
         <img src="imagens/logo.png" alt="Logo FURIA" class="logo" />
         <h1>Chat FURIA</h1>
@@ -26,7 +33,7 @@
 
       <!-- Corpo do chat -->
       <main class="chat-body" id="chat-body">
-      
+        <!-- Mensagens serão renderizadas aqui via JavaScript -->
       </main>
 
       <!-- Rodapé com entrada de mensagem -->
@@ -36,7 +43,7 @@
       </footer>
     </div>
 
-    <!-- Botão Ver Mais - agora fora do container do chat -->
+    <!-- Botão "Ver mais" -->
     <div class="toggle-container">
       <button class="more-toggle" id="more-info-btn" aria-expanded="false" aria-controls="more-info">
         Ver mais sobre a FURIA
@@ -44,7 +51,7 @@
       </button>
     </div>
 
-    <!-- Seção "Ver mais" agora como uma seção independente -->
+    <!-- Seção "Ver mais" -->
     <section class="more-section" id="more-info" aria-hidden="true">
       <div class="more-content">
         <h2>Sobre a FURIA</h2>
@@ -83,6 +90,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
   <script type="module" src="js/chat.js"></script>
   <script type="module" src="js/main.js"></script>
-
 </body>
 </html>
