@@ -1,5 +1,10 @@
 // js/chat.js
 
+window.addEventListener('load', function() {
+    localStorage.removeItem('furiaChat_history');
+    conversationHistory = [];
+});
+
 export function initChat({ sendBtn, userInput, chatBody, soundBtn }) {
     let soundOn = true;
     let conversationHistory = [];
@@ -52,7 +57,15 @@ export function initChat({ sendBtn, userInput, chatBody, soundBtn }) {
         // Mostrar mensagem de boas-vindas se não houver histórico
         if (conversationHistory.length === 0) {
             setTimeout(() => {
+                // Mensagem de boas-vindas
                 appendMessage('Olá! Sou o bot oficial da FURIA. Como posso ajudar você hoje? 🔥', 'bot');
+                saveToHistory('Olá! Sou o bot oficial da FURIA. Como posso ajudar você hoje? 🔥', 'bot');
+                
+                // Adicionar pergunta sobre o nome após 1 segundo
+                setTimeout(() => {
+                    appendMessage('Qual é o seu nome? Gostaria de conhecer você melhor! 😊', 'bot');
+                    saveToHistory('Qual é o seu nome? Gostaria de conhecer você melhor! 😊', 'bot');
+                }, 1000);
             }, 500);
         }
     }
@@ -148,6 +161,44 @@ export function initChat({ sendBtn, userInput, chatBody, soundBtn }) {
 
     function getBotResponse(input, sentiment) {
         const text = input.toLowerCase();
+        
+        // Verificar se é resposta à pergunta "Qual é o seu nome?"
+        // Procurar nas últimas mensagens da conversa se a pergunta sobre o nome foi feita
+        let nameQuestion = false;
+        for (let i = conversationHistory.length - 1; i >= 0 && i >= conversationHistory.length - 2; i--) {
+            if (conversationHistory[i].sender === 'bot' && 
+                conversationHistory[i].text.includes('Qual é o seu nome?')) {
+                nameQuestion = true;
+                break;
+            }
+        }
+        
+        if (nameQuestion) {
+            // Extrai o possível nome da resposta do usuário
+            let name = text;
+            // Remove palavras comuns em respostas
+            const fillers = ['eu', 'sou', 'me', 'chamo', 'meu', 'nome', 'é'];
+            for (const filler of fillers) {
+                name = name.replace(new RegExp('\\b' + filler + '\\b', 'gi'), '');
+            }
+            
+            // Remove espaços extras e capitaliza o nome
+            name = name.trim().replace(/\s+/g, ' ');
+            if (name.length > 0) {
+                // Capitaliza a primeira letra de cada palavra
+                name = name.split(' ').map(word => 
+                    word.charAt(0).toUpperCase() + word.slice(1)
+                ).join(' ');
+                
+                // Salva o nome no localStorage para uso futuro
+                localStorage.setItem('furiaChat_userName', name);
+                
+                return `Muito prazer em conhecer você, ${name}! 😄 Como posso te ajudar hoje com informações sobre a FURIA?`;
+            } else {
+                return "Desculpe, não consegui entender seu nome. Como posso te chamar?";
+            }
+        }
+
         const responses = {
             greetings: [
                 'E aí, fera! Pronto pra falar sobre a FURIA? 🔥',
@@ -177,7 +228,7 @@ export function initChat({ sendBtn, userInput, chatBody, soundBtn }) {
             social: [
                 'Segue a gente no Twitter: https://twitter.com/furia 🎮 Postamos updates diários!',
                 'Nosso canal na Twitch: https://twitch.tv/furia - Streams quase todos os dias com nossos jogadores!',
-                'Instagram com os bastidores: https://instagram.com/furia - Conteúdo exclusivo e momentos especiais da equipe.'
+                'Instagram com os bastidores: https://instagram.com/furiagg - Conteúdo exclusivo e momentos especiais da equipe.'
             ],
             cheer: [
                 '#FURIASTRONG! Vamos juntos! A torcida é nossa força. 💪',
