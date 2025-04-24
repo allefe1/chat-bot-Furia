@@ -57,18 +57,36 @@ document.addEventListener('DOMContentLoaded', () => {
         theme = document.body.classList.contains('light') ? 'light' : 'dark';
     });
 
-    // Botão ver mais
+    // Botão ver mais - com nova lógica para a seção separada
     moreInfoBtn.addEventListener('click', () => {
         const isExpanded = moreInfoBtn.getAttribute('aria-expanded') === 'true';
+        
+        // Atualiza atributos ARIA
         moreInfoBtn.setAttribute('aria-expanded', !isExpanded);
         moreInfoSection.setAttribute('aria-hidden', isExpanded);
+        
+        // Alterna classes para a expansão visual
         moreInfoSection.classList.toggle('expanded');
         moreInfoBtn.classList.toggle('expanded');
-
+        
+        // Atualiza o texto do botão
+        const arrowSpan = moreInfoBtn.querySelector('.arrow-down');
         if (!isExpanded) {
+            moreInfoBtn.textContent = 'Ocultar detalhes ';
+            moreInfoBtn.appendChild(arrowSpan);
+            arrowSpan.style.transform = 'rotate(180deg)';
+            
+            // Rola para a seção expandida após um pequeno delay
             setTimeout(() => {
-                moreInfoSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 50);
+                moreInfoSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 300);
+        } else {
+            moreInfoBtn.textContent = 'Ver mais sobre a FURIA ';
+            moreInfoBtn.appendChild(arrowSpan);
+            arrowSpan.style.transform = 'rotate(0deg)';
         }
     });
 });

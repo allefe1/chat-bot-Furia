@@ -11,36 +11,42 @@
   <!-- Canvas de partículas de fundo -->
   <canvas id="bg-canvas"></canvas>
 
-  <div class="chat-container">
-    <!-- Cabeçalho do chat -->
-    <header class="chat-header">
-      <img src="imagens/logo.png" alt="Logo FURIA" class="logo" />
-      <h1>Chat FURIA</h1>
-      <div class="header-controls">
-        <button class="control-btn" id="sound-btn" title="Ativar/desativar som" aria-label="Ativar ou desativar som">🔊</button>
-        <button class="control-btn" id="theme-btn" title="Alternar tema" aria-label="Alternar tema claro ou escuro">🌙</button>
-      </div>
-    </header>
+  <div class="page-container">
+    <!-- Container do chat -->
+    <div class="chat-container">
+      <!-- Cabeçalho do chat -->
+      <header class="chat-header">
+        <img src="imagens/logo.png" alt="Logo FURIA" class="logo" />
+        <h1>Chat FURIA</h1>
+        <div class="header-controls">
+          <button class="control-btn" id="sound-btn" title="Ativar/desativar som" aria-label="Ativar ou desativar som">🔊</button>
+          <button class="control-btn" id="theme-btn" title="Alternar tema" aria-label="Alternar tema claro ou escuro">🌙</button>
+        </div>
+      </header>
 
-    <!-- Corpo do chat -->
-    <main class="chat-body" id="chat-body">
-      <div class="message bot">Olá! Sou o FURIAbot. Em que posso te ajudar hoje? 😎</div>
-    </main>
+      <!-- Corpo do chat -->
+      <main class="chat-body" id="chat-body">
+        <div class="message bot">Olá! Sou o FURIAbot. Em que posso te ajudar hoje? 😎</div>
+      </main>
 
-    <!-- Rodapé com entrada de mensagem -->
-    <footer class="chat-footer">
-      <input type="text" id="user-input" placeholder="Digite sua mensagem..." aria-label="Digite sua mensagem" />
-      <button id="send-btn" aria-label="Enviar mensagem">Enviar</button>
-    </footer>
+      <!-- Rodapé com entrada de mensagem -->
+      <footer class="chat-footer">
+        <input type="text" id="user-input" placeholder="Digite sua mensagem..." aria-label="Digite sua mensagem" />
+        <button id="send-btn" aria-label="Enviar mensagem">Enviar</button>
+      </footer>
+    </div>
 
-    <!-- Seção "Ver mais" reorganizada -->
-    <div class="more-container">
+    <!-- Botão Ver Mais - agora fora do container do chat -->
+    <div class="toggle-container">
       <button class="more-toggle" id="more-info-btn" aria-expanded="false" aria-controls="more-info">
-        Ver mais
+        Ver mais sobre a FURIA
         <span class="arrow-down" aria-hidden="true">⌄</span>
       </button>
+    </div>
 
-      <section class="more-info" id="more-info" aria-hidden="true">
+    <!-- Seção "Ver mais" agora como uma seção independente -->
+    <section class="more-section" id="more-info" aria-hidden="true">
+      <div class="more-content">
         <h2>Sobre a FURIA</h2>
         <p>A FURIA é uma das organizações de e-sports mais prestigiadas do Brasil.</p>
 
@@ -69,8 +75,8 @@
             <img src="imagens/image2.png" alt="Equipe FURIA comemorando" loading="lazy" />
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </div>
 
   <!-- Scripts -->
