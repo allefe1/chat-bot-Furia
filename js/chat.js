@@ -1,10 +1,5 @@
 // js/chat.js
 
-window.addEventListener('load', function() {
-    localStorage.removeItem('furiaChat_history');
-    conversationHistory = [];
-});
-
 export function initChat({ sendBtn, userInput, chatBody, soundBtn }) {
     let soundOn = true;
     let conversationHistory = [];
@@ -29,6 +24,12 @@ export function initChat({ sendBtn, userInput, chatBody, soundBtn }) {
     
     // Carregar configurações salvas
     function loadSavedSettings() {
+        // Limpa o histórico ao recarregar (opcional)
+        localStorage.removeItem('furiaChat_history');
+
+        // Reinicia o array de histórico
+        conversationHistory = [];
+
         const savedSound = localStorage.getItem('furiaChat_soundOn');
         if (savedSound !== null) {
             soundOn = savedSound === 'true';
