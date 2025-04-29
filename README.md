@@ -21,7 +21,7 @@ O projeto está dividido em dois arquivos principais de JavaScript:
 ![Dashboard Principal (Tema Claro)](prints/dashescuro.png)
 
 - **Aba "Ver Mais":**
-![Aba "Ver Mais"] (prints/vermais.png)
+![Aba "Ver Mais" (Ver Mais)](prints/vermais.png).
 
 ## Como Rodar o Projeto
 1. Clone este repositório:
